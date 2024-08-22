@@ -3,6 +3,7 @@ import createApiMethod from "./createApiMethod";
 import {
   ListAnimeStatus,
   ListAnimeResponse,
+  UserAnimeResponse,
 } from "../interfaces/ListAnimeTypes";
 
 const BASE_URL: string = createApiMethod("ListAnime");
@@ -23,7 +24,7 @@ const ListAnime = async (
   translation: string,
   genreBan: string,
   isWeb: boolean
-): Promise<ListAnimeResponse> => {
+): Promise<ListAnimeResponse[]> => {
   return await axios
     .get(
       `${
@@ -35,7 +36,7 @@ const ListAnime = async (
 
 const ListAnimeDefault = async (
   lang: "ru" | "en" = "ru"
-): Promise<ListAnimeResponse> => {
+): Promise<ListAnimeResponse[]> => {
   return await ListAnime(
     true,
     "popularity",
@@ -53,4 +54,16 @@ const ListAnimeDefault = async (
   );
 };
 
-export { ListAnime, ListAnimeDefault };
+const ListAnimeById = async (
+  userId: number,
+  userState: "completed" | "plantowatch" | "banned",
+  lang: "ru" | "en" = "ru"
+): Promise<UserAnimeResponse[]> => {
+  return await axios
+    .get(
+      `${BASE_URL}?sort=&genre=&type=ova,tv,movie&status=released,ongoing,anons&count=50&skip=0&name=&userId=${userId}&userState=${userState}&userOrder=latest&genreBan=`
+    )
+    .then((response) => response.data);
+};
+
+export { ListAnime, ListAnimeDefault, ListAnimeById };

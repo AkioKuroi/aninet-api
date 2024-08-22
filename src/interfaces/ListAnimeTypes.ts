@@ -1,4 +1,8 @@
-type ListAnimeStatus = "anons" | "ongoing" | "released";
+type ListAnimeStatuses = "anons" | "ongoing" | "released";
+type ListAnimeStatus =
+  | `${ListAnimeStatuses}`
+  | `${ListAnimeStatuses},${ListAnimeStatuses}`
+  | `${ListAnimeStatuses},${ListAnimeStatuses},${ListAnimeStatuses}`;
 type ListAnimeKind = {
   kindId: number;
   name: string;
@@ -62,7 +66,7 @@ interface ListAnimeResponse {
   isFavorite: boolean;
   isLibriaFullHd: boolean;
   isRomanticaBlocked: boolean;
-  kind: ListAnimeKind[];
+  kind: ListAnimeKind[] | number;
   kodikId: number | null;
   kodikStudios: string[] | null;
   malImage: string;
@@ -83,10 +87,35 @@ interface ListAnimeResponse {
   studio: ListAnimeStudio[];
   userNote: string | null;
   userRating: number;
-  userState: null;
+  userState: "completed" | "plantowatch" | "banned" | null;
   videoLink: string | null;
   vidStreamingDub: [];
   vidStreamingSub: [];
+}
+
+interface UserAnimeResponse {
+  animeId: number;
+  name: string;
+  russianName: string;
+  image: string;
+  date: string;
+  rating: number;
+  episodes: number;
+  currentEpisodes: number;
+  rateCount: number;
+  memberCount: number;
+  kind: number;
+  imageWorldArt: string;
+  userState: "completed" | "plantowatch" | "banned" | null;
+  userRating: number;
+  suggestedId: number;
+  suggestorName: string | null;
+  friendRating: number;
+  studioId: number;
+  status: ListAnimeStatus;
+  hasVideo: boolean;
+  fullImageLink: string;
+  malImage: string;
 }
 
 export {
@@ -96,4 +125,5 @@ export {
   ListAnimeScreenshot,
   ListAnimeStudio,
   ListAnimeResponse,
+  UserAnimeResponse,
 };
