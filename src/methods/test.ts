@@ -5,11 +5,11 @@ import { ListAnimeById, ListAnimeDefault } from "./ListAnime";
   let found: boolean = false;
   while (true) {
     const randomUserId = Math.floor(Math.random() * 819000);
-    const anime: UserAnimeResponse[] | undefined = await ListAnimeById(
+    const anime: UserAnimeResponse[] | null = await ListAnimeById(
       randomUserId,
       "completed"
     );
-    if (anime && anime.length > 0) {
+    if (anime) {
       console.log("\n\n\n\nUser:", randomUserId);
       console.log(anime);
       break;

@@ -24,19 +24,20 @@ const ListAnime = async (
   translation: string,
   genreBan: string,
   isWeb: boolean
-): Promise<ListAnimeResponse[]> => {
-  return await axios
+): Promise<ListAnimeResponse[] | null> => {
+  const data: ListAnimeResponse[] | undefined = await axios
     .get(
       `${
         isGuest ? BASE_URL_GUEST : BASE_URL
       }?sort=${sort}&genre=${genre}&type=${type}&status=${status}&count=${count}&skip=${skip}&name=${name}&onlyNew=${onlyNew}&hasVideo=${hasVideo}&translation=${translation}&genreBan=${genreBan}&isWeb=${isWeb}`
     )
     .then((response) => response.data);
+  return data && data.length > 0 ? data : null;
 };
 
 const ListAnimeDefault = async (
   lang: "ru" | "en" = "ru"
-): Promise<ListAnimeResponse[]> => {
+): Promise<ListAnimeResponse[] | null> => {
   return await ListAnime(
     true,
     "popularity",
@@ -58,12 +59,13 @@ const ListAnimeById = async (
   userId: number,
   userState: "completed" | "plantowatch" | "banned",
   lang: "ru" | "en" = "ru"
-): Promise<UserAnimeResponse[]> => {
-  return await axios
+): Promise<UserAnimeResponse[] | null> => {
+  const data: UserAnimeResponse[] = await axios
     .get(
       `${BASE_URL}?sort=&genre=&type=ova,tv,movie&status=released,ongoing,anons&count=50&skip=0&name=&userId=${userId}&userState=${userState}&userOrder=latest&genreBan=`
     )
     .then((response) => response.data);
+  return data && data.length > 0 ? data : null;
 };
 
 export { ListAnime, ListAnimeDefault, ListAnimeById };
