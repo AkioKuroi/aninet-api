@@ -1,0 +1,14 @@
+{
+  "name": "aninet-api-typescript",
+  "version": "0.0.1",
+  "description": "The AniNet API Wrapper for TypeScript",
+  "main": "src/methods/test.ts",
+  "scripts": {
+    "dev": "ts-node src/methods/test.ts"
+  },
+  "private": false,
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^1.7.4"
+  }
+}
