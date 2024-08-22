@@ -2,7 +2,7 @@ import { UserAnimeResponse } from "../interfaces/ListAnimeTypes";
 import { GetUserProfile } from "./GetUserProfile";
 import { ListAnimeById, ListAnimeDefault } from "./ListAnime";
 
-const PrintLog = (message: string) => {
+const PrintLog = (message: string): void => {
   console.log(`\n\n\n[${new Date().toISOString()}] [LOG] ${message}\n\n\n`);
 };
 
