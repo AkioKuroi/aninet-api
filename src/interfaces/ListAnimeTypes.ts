@@ -43,6 +43,12 @@ type ListAnimeStudio = {
   studioId: number;
 };
 
+type Genre = {
+  genreId: number;
+  name: string;
+  russName: string;
+};
+
 interface ListAnimeResponse {
   anilibriId: number;
   anilibriaCount: number;
@@ -60,7 +66,7 @@ interface ListAnimeResponse {
   favoriteSettings: null;
   fullImageLink: string;
   fullScreenshotLink: string;
-  genres: string[];
+  genres: Genre[];
   image: string;
   imageWorldArt: string;
   isFavorite: boolean;

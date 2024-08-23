@@ -1,5 +1,5 @@
 import axios from "axios";
-import createApiMethod from "./createApiMethod";
+import createApiMethod from "./funcs/createApiMethod";
 import {
   ListAnimeStatus,
   ListAnimeResponse,

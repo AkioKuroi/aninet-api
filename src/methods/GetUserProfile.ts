@@ -1,6 +1,6 @@
 import axios from "axios";
 import { UserProfile } from "../interfaces/UserProfile";
-import createApiMethod from "./createApiMethod";
+import createApiMethod from "./funcs/createApiMethod";
 
 const BASE_URL = createApiMethod("User");
 
