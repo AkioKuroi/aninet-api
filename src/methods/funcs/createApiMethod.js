@@ -1,5 +1,5 @@
 import { ANINET_API_URL } from "../../global";
-const createApiMethod = (methodName: string): string => {
+const createApiMethod = (methodName) => {
   return `${ANINET_API_URL}/${methodName}`;
 };
 export default createApiMethod;
